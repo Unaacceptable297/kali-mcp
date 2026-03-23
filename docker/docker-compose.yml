@@ -1,0 +1,10 @@
+services:
+  kali:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: kali-mcp
+    container_name: kali-mcp
+    stdin_open: true
+    tty: true
+    working_dir: /workspace

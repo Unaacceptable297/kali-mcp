@@ -1,0 +1,34 @@
+{
+  "name": "kali-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for Kali Linux Docker environment",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "kali-mcp": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "tsx src/index.ts"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.1",
+    "dockerode": "^4.0.7",
+    "tar-stream": "^3.1.8",
+    "zod": "^3.24.4"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Hannes221/kali-mcp.git"
+  },
+  "keywords": ["mcp", "kali", "docker", "security", "pentesting", "nmap", "model-context-protocol"],
+  "devDependencies": {
+    "@types/dockerode": "^3.3.38",
+    "@types/node": "^22.15.3",
+    "@types/tar-stream": "^3.1.4",
+    "tsx": "^4.19.4",
+    "typescript": "^5.8.3"
+  }
+}
