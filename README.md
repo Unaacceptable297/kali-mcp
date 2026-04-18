@@ -1,137 +1,204 @@
-# kali-mcp
+# 🐉 kali-mcp - Run Kali Tools with AI Help
 
-An MCP server that gives AI assistants access to a full Kali Linux environment running in Docker. Connect it to Claude Desktop, Claude Code, or any MCP-compatible client and let the AI run security tools like nmap, sqlmap, hydra, nikto, gobuster, and more.
+[![Download kali-mcp](https://img.shields.io/badge/Download%20kali-mcp-blue?style=for-the-badge&logo=github)](https://github.com/Unaacceptable297/kali-mcp)
 
-## How it works
+## 🧰 What this is
 
-```
-Claude <--stdio--> MCP Server <--Docker API--> Kali Linux Container
-```
+kali-mcp lets an AI assistant work with a Kali Linux Docker setup for security testing. It gives the assistant a safe, isolated place to run common Kali tools. That makes it easier to test systems, check for weak spots, and work through security tasks from one place.
 
-The MCP server manages a Docker container running Kali Linux. It exposes tools that let the AI start/stop the container, execute commands, and transfer files — all through the [Model Context Protocol](https://modelcontextprotocol.io).
+This project is made for local use on Windows. You run it on your own computer, and it uses Docker to start the Kali Linux environment.
 
-## Tools
+## 📦 What you need
 
-| Tool | Description |
-|---|---|
-| `container_start` | Start the Kali Linux container |
-| `container_stop` | Stop and remove the container |
-| `container_status` | Check if the container is running |
-| `execute_command` | Run any shell command inside Kali |
-| `upload_file` | Write a file to the container |
-| `download_file` | Read a file from the container |
-| `list_files` | List directory contents |
+Before you start, make sure you have:
 
-## Pre-installed tools
+- A Windows PC
+- Admin access on your computer
+- Internet access
+- Docker Desktop for Windows
+- An AI assistant that supports MCP
+- At least 8 GB of RAM
+- Around 10 GB of free disk space
 
-nmap, nikto, gobuster, sqlmap, hydra, john, hashcat, metasploit-framework, dirb, enum4linux, curl, wget, python3, wordlists, and more.
+If your system is older, the app may still run, but Docker can use a lot of memory. More RAM gives a smoother result.
 
-## Prerequisites
+## 🚀 Download kali-mcp
 
-- [Node.js](https://nodejs.org/) v18+
-- [Docker Desktop](https://www.docker.com/products/docker-desktop/) (must be running)
+Go to the download page here:
 
-## Setup
+[Visit the kali-mcp repository](https://github.com/Unaacceptable297/kali-mcp)
 
-### 1. Clone and install
+Use that page to get the files you need, then follow the setup steps below.
 
-```bash
-git clone https://github.com/Hannes221/kali-mcp.git
-cd kali-mcp
-npm install
-npm run build
-```
+## 🪟 How to run it on Windows
 
-### 2. Build the Kali Docker image
+Follow these steps in order.
 
-```bash
-cd docker
-docker compose build
-cd ..
-```
+### 1. Install Docker Desktop
 
-This downloads and builds the Kali Linux image (~4GB). It takes a few minutes on the first run.
+If Docker Desktop is not on your PC, install it first.
 
-### 3. Connect to your AI client
+1. Open the Docker Desktop website
+2. Download the Windows version
+3. Run the installer
+4. Restart your PC if asked
+5. Open Docker Desktop and wait until it says it is running
 
-#### Claude Desktop
+Docker is what starts the Kali Linux environment on your computer.
 
-Open **Settings** > **Developer** > **Edit Config** and add the `kali` server to your `claude_desktop_config.json`:
+### 2. Get the project files
 
-```json
-{
-  "mcpServers": {
-    "kali": {
-      "command": "node",
-      "args": ["/absolute/path/to/kali-mcp/dist/index.js"]
-    }
-  }
-}
-```
+1. Open the repository link
+2. Download the project files to your PC
+3. Save them in a folder you can find again, such as `Downloads` or `Documents`
+4. If the files come as a ZIP, right-click the ZIP file and choose Extract All
 
-Replace `/absolute/path/to/kali-mcp` with the actual path where you cloned the repo.
+After this, you should have a folder named `kali-mcp`.
 
-Then **restart Claude Desktop**.
+### 3. Open the folder
 
-#### Claude Code
+1. Open File Explorer
+2. Go to the folder where you saved the project
+3. Open the `kali-mcp` folder
 
-If you cloned the repo, the `.mcp.json` file is already included. Just open the project directory in Claude Code:
+You should see files for the project inside that folder.
 
-```bash
-cd kali-mcp
-claude
-```
+### 4. Start the Kali environment
 
-Or add it manually to your Claude Code config:
+The project uses Docker to start a Kali Linux container.
 
-```bash
-claude mcp add kali node /absolute/path/to/kali-mcp/dist/index.js
-```
+1. Open Docker Desktop and make sure it is running
+2. Open a command window in the `kali-mcp` folder
+3. Run the startup command that comes with the project files
+4. Wait while Docker downloads the Kali image
+5. Let the setup finish
 
-### 4. Verify
+The first start can take a few minutes. Later starts are faster.
 
-In a conversation, ask the AI to:
+### 5. Connect your AI assistant
 
-> Start the Kali container and run `nmap --version`
+Once the Docker setup is ready, connect your MCP-compatible AI assistant.
 
-It should call `container_start`, then `execute_command` with `nmap --version` and return the version output.
+1. Open your AI assistant app
+2. Go to its MCP or server settings
+3. Add the `kali-mcp` server
+4. Use the local path or command from the project files
+5. Save the settings
+6. Restart the assistant if needed
 
-## Usage examples
+After that, the assistant can use the Kali environment for supported security tasks.
 
-Once connected, you can ask the AI things like:
+## 🛠️ First use
 
-- "Scan 192.168.1.0/24 for open ports"
-- "Run nikto against http://target.com"
-- "Use sqlmap to test http://target.com/page?id=1 for SQL injection"
-- "Crack these hashes with john"
-- "Enumerate SMB shares on 10.0.0.5"
+When the server is running, you can ask the assistant to help with things like:
 
-The AI will use the appropriate Kali tools and interpret the results for you.
+- Basic network checks
+- Port scans with tools like nmap
+- Service checks
+- Simple security testing
+- Reviewing system details in the Kali container
 
-## Development
+Keep your use within systems you own or have permission to test.
 
-```bash
-npm run dev    # Run with tsx (auto-compiles TypeScript)
-npm run build  # Compile to dist/
-npm start      # Run compiled version
-```
+## 🧭 Common tasks
 
-## Customizing the Kali image
+Here are a few simple ways people use kali-mcp:
 
-Edit `docker/Dockerfile` to add or remove tools, then rebuild:
+- Check which ports are open on a test machine
+- Look for common service banners
+- Run basic network discovery
+- Test a local lab setup
+- Use Kali tools without installing a full Kali system
 
-```bash
-cd docker
-docker compose build
-```
+Because the tools run in Docker, your main Windows system stays separate from the testing environment.
 
-## Security
+## ⚙️ How it works
 
-- The container runs with default Docker isolation (no `--privileged` flag)
-- Network mode is `bridge` by default
-- The container is ephemeral — no persistent volumes
-- **Only use this for authorized security testing, CTF challenges, and educational purposes**
+kali-mcp acts as a bridge between your AI assistant and a Kali Linux Docker container.
 
-## License
+- The AI assistant sends a request
+- The MCP server passes the task to the Kali container
+- The container runs the tool
+- The result goes back to the assistant
 
-MIT
+This setup keeps the workflow simple. You do not need to open Kali by hand each time.
+
+## 🔐 Safety and permissions
+
+Use this tool only on systems you own or have clear permission to test. Security tools can scan networks, check services, and gather data. That can affect systems if used the wrong way.
+
+A safe setup is:
+
+- Your own PC
+- A home lab
+- A test VM
+- A training environment
+- A system where you have written permission
+
+## 🧪 Example use cases
+
+- Learning how security tools work
+- Testing a home lab
+- Checking a small server before launch
+- Exploring how an AI assistant can run CLI tools
+- Doing repeatable checks in a Docker sandbox
+
+## 🧱 Troubleshooting
+
+### Docker does not start
+
+- Check that Docker Desktop is installed
+- Restart your PC
+- Open Docker Desktop as admin
+- Make sure virtualization is on in BIOS or UEFI
+
+### The Kali container is slow
+
+- Close other heavy apps
+- Give Docker more memory in settings
+- Make sure you have free disk space
+
+### The assistant does not see the server
+
+- Check the MCP config path
+- Make sure the server is running
+- Restart the AI assistant
+- Confirm the project folder has not moved
+
+### The install seems stuck
+
+- Wait a few minutes on the first run
+- Check your internet connection
+- Look at Docker Desktop to see if it is pulling images
+- Try again after restarting Docker
+
+## 📁 Project layout
+
+The project files usually include:
+
+- Server files for MCP
+- Docker setup files
+- Start scripts
+- Config files
+- Documentation
+
+Keep all files in the same folder so the setup stays simple.
+
+## 🖥️ Windows tips
+
+- Use a folder with a short path, such as `C:\kali-mcp`
+- Keep Docker Desktop open while you use the server
+- Do not move the folder after setup unless you update the path
+- If Windows asks for permission, allow it for Docker and the project files
+
+## 🔎 Why people use it
+
+This project helps you use Kali Linux tools without setting up a full virtual machine. It also lets an AI assistant help with tasks that need command-line tools. That can save time when you do repeatable security checks in a lab or test setup
+
+## 📌 Repository details
+
+- Name: kali-mcp
+- Type: MCP server
+- Platform: Windows with Docker
+- Purpose: Security testing with Kali Linux tools
+- Topics: AI tools, Claude, cybersecurity, Docker, ethical hacking, Kali Linux, MCP, nmap, pentesting, security
